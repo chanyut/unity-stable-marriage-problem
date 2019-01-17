@@ -14,8 +14,7 @@ public class Person {
     }
 
     public void DebugMyRelationship() {
-        Debug.AssertFormat(this.fiance != null, "fiance could not be null");
-        Debug.LogFormat("relationship: {0} - {1}", this.name, this.fiance.name);
+        Debug.LogFormat("relationship: {0} - {1}", this.name, this.fiance == null? "none": this.fiance.name);
     }
 
 }

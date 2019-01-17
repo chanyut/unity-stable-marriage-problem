@@ -1,23 +1,32 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestCases
 {
-    public static Person[] TestCase01() {
-        var p1 = new Person("p1");
-        var p2 = new Person("p2");
-        var p3 = new Person("p3");
-        var p4 = new Person("p4");
-        var p5 = new Person("p5");
-
-        p1.preferences = new List<Person>() { p5, p3, p4, p2 };
-        p2.preferences = new List<Person>() { p4, p3, p1, p5 };
-        p3.preferences = new List<Person>() { p1, p5, p2, p4 };
-        p4.preferences = new List<Person>() { p5, p1, p2, p3 };
-        p5.preferences = new List<Person>() { p2, p4, p1, p3 };
+    // returns array of person(men), and array of person(women)  
+    public static Tuple<Person[], Person[]> TestCase01() {
+        var m1 = new Person("m1");
+        var m2 = new Person("m2");
+        var m3 = new Person("m3");
         
-        return new Person[] { p1, p2, p3, p4, p5 };
+        var w1 = new Person("w1");
+        var w2 = new Person("w2");
+        var w3 = new Person("w3");
+        
+        m1.preferences = new List<Person>() { w2, w1, w3 };
+        m2.preferences = new List<Person>() { w2, w3, w1 };
+        m3.preferences = new List<Person>() { w2, w3, w1 };
+
+        w1.preferences = new List<Person>() { m3, m2, m1 };
+        w2.preferences = new List<Person>() { m1, m2, m3 };
+        w3.preferences = new List<Person>() { m1, m3, m2 };
+        
+        return new Tuple<Person[], Person[]>(
+            new Person[] { m1, m2, m3 },
+            new Person[] { w1, w2, w3 }
+        );
     }
 
 }
